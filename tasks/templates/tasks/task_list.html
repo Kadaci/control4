@@ -1,0 +1,15 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Список{% endblock %}
+
+{% block content %}
+<h2>Список записей</h2>
+<ul>
+    {% for task in tasks %}
+        <li>{{ task.title }}</li>
+    {% empty %}
+        <li>Нет записей</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+
