@@ -1,12 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from users.managers import CustomUserManager
+from django.utils import timezone
+
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True)
+    first_name = models.CharField(max_length=150, blank=True, null=True)
+    last_name = models.CharField(max_length=150, blank=True, null=True)
+    registration_source = models.CharField(max_length=50, default="local")
     is_active = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
-    birthdate = models.DateField(null=True, blank=True)  # Новое поле
+    birthdate = models.DateField(null=True, blank=True)
+    last_login = models.DateTimeField(blank=True, null=True)
 
     objects = CustomUserManager()
 
